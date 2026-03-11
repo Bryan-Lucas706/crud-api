@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>PHP/JS CRUD Project</h1>
+    </header>
+    <main>
+      <section id="users-container">
+        <h2>Users</h2>
+      </section>
+      <section id="createUsers-container">
+        <h2>Create User</h2>
+        <form id="form" action="" method="post" autocomplete="off">
+          <div>
+            <label for="name">Name</label> <br />
+            <input type="text" name="name" id="name" />
+          </div>
+
+          <div>
+            <label for="age">Age</label> <br />
+            <input type="number" name="age" id="age" step="1" />
+          </div>
+
+          <div>
+            <label for="email">Email</label> <br />
+            <input type="email" name="email" id="email" />
+          </div>
+
+          <div id="container-btn">
+            <input type="submit" id="btn-submit" value="Create" />
+            <input type="reset" id="btn-cancel" value="Cancel" />
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
