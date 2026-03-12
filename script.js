@@ -1,16 +1,37 @@
-//const form = document.getElementById("form");
-//const btnSubmit = document.getElementById("btn-submit");
-
-//btnSubmit.addEventListener("submit", getUsers);
-
 async function getUsers() {
   const response = await fetch("http://localhost:8000/api/users");
-  const users = await response.json();
+  const data = await response.json();
 
-  console.log(users);
-  //  renderUsers(users);
+  renderUsers(data.users);
 }
 
-await getUsers();
+function renderUsers(users) {
+  const usersContainer = document.getElementById("users-container");
 
-//function renderUsers() {}
+  if (users.length === 0) {
+    usersContainer.innerHTML = '<p class="no-users">No users found</p>';
+  } else {
+    usersContainer.innerHTML = ""; 
+  }
+
+  users.forEach((user) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.innerHTML = `
+      <div class="info-user">
+        <strong class="name">${user.name}</strong>
+        <span><strong>Age: </strong>${user.age}</span>
+        <span><strong>Email: </strong>${user.email}</span>
+      </div>
+      <div class="change-container">
+        <button class="edit" id="edit" type="submit">Edit</button>
+        <button class="delete" id="delete" type="submit">Delete</button>
+      </div>
+    `;
+
+    usersContainer.appendChild(card);
+  });
+}
+
+getUsers();

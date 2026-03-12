@@ -43,10 +43,15 @@ main {
   gap: 10px;
 }
 
+.no-users{
+  color: gray;
+}
+
 .card {
   min-height: 150px;
   width: 260px;
   border: 1px solid var(--border);
+  border-radius: 5px;
 }
 
 .info-user {
@@ -55,6 +60,11 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  font-size: 0.9em;
+
+  & .name {
+    font-size: 1.3em;
+  }
 }
 
 .change-container {
@@ -63,15 +73,27 @@ main {
   align-items: center;
   justify-content: space-evenly;
   background-color: var(--background);
-  padding: 5px 10px;
   border-top: 1px solid var(--border);
+  border-radius: 0px 0px 5px 5px;
 
   & button {
-    width: 110px;
+    width: 45%;
     background-color: transparent;
     padding: 5px 30px;
     border: 1px solid var(--black);
     border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  & .edit:focus {
+    background-color: var(--black);
+    color: white;
+  }
+
+  & button.delete {
+    border-color: red;
+    color: red;
   }
 }
 
@@ -106,36 +128,42 @@ form {
   & div:last-child {
     flex: 1.5;
   }
-}
 
-label {
-  font-size: 0.9em;
-  margin-bottom: 50px;
-}
+  & label {
+    font-size: 0.9em;
+    margin-bottom: 50px;
+  }
 
-input {
-  width: 100%;
-  margin-top: 5px;
-  padding: 8px;
-  border: 1px solid #e4e7eb;
-  border-radius: 6px;
-}
+  & input {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #e4e7eb;
+    border-radius: 6px;
+  }
 
-input:focus {
-  border-color: #8ebcfe;
-  box-shadow: 0px 0px 0px 3px #c1dbfe;
+  & input:focus {
+    border-color: #8ebcfe;
+    box-shadow: 0px 0px 0px 3px #c1dbfe;
+  }
 }
 
 #container-btn {
   display: flex;
   align-items: flex-end;
-}
 
-#btn-submit {
-  background-color: var(--black);
-  color: white;
-}
+  & input {
+    border-color: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
 
-#container-btn #btn-cancel {
-  display: none;
+  & #btn-submit {
+    background-color: var(--black);
+    color: white;
+  }
+
+  & #btn-cancel {
+    display: none;
+  }
 }
