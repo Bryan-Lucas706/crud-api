@@ -1,5 +1,5 @@
-async function getUsers() {
-  const response = await fetch("http://localhost:8000/api/users");
+export async function getUsers(apiUrl) {
+  const response = await fetch(apiUrl);
   const data = await response.json();
 
   renderUsers(data.users);
@@ -7,11 +7,10 @@ async function getUsers() {
 
 function renderUsers(users) {
   const usersContainer = document.getElementById("users-container");
+  usersContainer.innerHTML = "";
 
   if (users.length === 0) {
     usersContainer.innerHTML = '<p class="no-users">No users found</p>';
-  } else {
-    usersContainer.innerHTML = ""; 
   }
 
   users.forEach((user) => {
@@ -33,5 +32,3 @@ function renderUsers(users) {
     usersContainer.appendChild(card);
   });
 }
-
-getUsers();
