@@ -1,16 +1,19 @@
-export async function postUsers(apiUrl, name, age, email) {
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        age: age,
-        email: email,
-      }),
-    });
-    const created = await response.json();
-  } catch (error) {
-    console.log("Error creating user:", error);
+export async function postUsers(apiUrl, user) {
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: user.name,
+      age: user.age,
+      email: user.email,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.error("Error creating user:", data.error);
+    throw new Error(data.error || "Failed to create user");
   }
+  return data;
 }

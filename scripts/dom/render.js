@@ -1,24 +1,29 @@
-export async function getUsers(apiUrl) {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
+import { getUsers } from "../api/read.js";
 
-  renderUsers(data.users);
+let usersCache = [];
 
-  return data.users; 
+export function findUserById(id) {
+  return usersCache.find((user) => user.id === id);
 }
 
-function renderUsers(users) {
+export async function renderUsers(apiUrl) {
+  const users = await getUsers(apiUrl);
+  usersCache = users;
+
   const usersContainer = document.getElementById("users-container");
-  usersContainer.innerHTML = "";
 
   if (users.length === 0) {
     usersContainer.innerHTML = '<p class="no-users">No users found</p>';
     return;
   }
 
+  
+  usersContainer.innerHTML = "";
+
   users.forEach((user) => {
     const card = document.createElement("div");
-    card.classList.add("card");
+    card.classList.add(`card`);
+    card.id = user.id;
 
     card.innerHTML = `
       <div class="info-user">
@@ -27,9 +32,9 @@ function renderUsers(users) {
         <span><strong>Email: </strong>${user.email}</span>
       </div>
       <div class="change-container">  
-        <button class="edit-btn" data-id="${user.id}">Edit</button>
-        <button class="delete-btn" data-id="${user.id}">Delete</button>
-      </div>
+        <button class="edit-btn" data-action="edit">Edit</button>
+        <button class="delete-btn" data-action="delete">Delete</button>
+        </div>
     `;
 
     usersContainer.appendChild(card);
