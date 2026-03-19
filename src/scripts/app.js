@@ -47,7 +47,7 @@ function exitEditMode() {
   form.reset();
 }
 
-// -- DELETE / EDIT  -- //
+// == EDIT == //
 
 // Função auxiliar:
 function getUserFromCard(button) {
@@ -78,7 +78,7 @@ usersContainer.addEventListener("click", async (event) => {
   }
 });
 
-// -- CREATE AREA -- //
+// == DELETE / EDIT  == //
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();

@@ -1,0 +1,6 @@
+services:
+  nginx:
+    container_name: crud-api
+    build: .
+    ports:
+      - 5500:80 
