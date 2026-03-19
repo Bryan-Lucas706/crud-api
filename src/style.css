@@ -42,7 +42,7 @@ main {
   gap: 10px;
 }
 
-.no-users{
+.no-users {
   color: gray;
 }
 
@@ -97,7 +97,7 @@ main {
     color: red;
   }
 
-  & .delete-btn:hover{
+  & .delete-btn:hover {
     background-color: red;
     color: white;
   }
@@ -115,7 +115,7 @@ section {
   border-radius: 5px;
 }
 
-#error-msg{
+#error-msg {
   display: none;
   background-color: #ffa6a6;
   padding: 10px;
@@ -177,8 +177,19 @@ form {
     color: white;
   }
 
-  & #cancelBtn{
+  & #cancelBtn {
     margin-left: 10px;
     display: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  form {
+  flex-direction: column;
+  }
+
+  .user-card {
+    min-width: 100%;
+    height: 180px;
   }
 }
