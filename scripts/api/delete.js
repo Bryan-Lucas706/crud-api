@@ -10,3 +10,4 @@ export async function deleteUser(apiUrl, id) {
 
   return data;
 }
+

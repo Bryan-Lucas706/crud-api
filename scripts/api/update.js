@@ -1,12 +1,40 @@
-export async function putUsers(apiUrl, id, name, age, email) {
+// PUT — substituição completa
+export async function updateUser(apiUrl, id, { name, age, email }) {
   const response = await fetch(`${apiUrl}?id=${id}`, {
     method: "PUT",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify({
-      name: name,
-      age: age,
-      email: email,
+      name,
+      age: Number(age),
+      email,
     }),
   });
-  const updated = await response.json();
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new error(data.error || "Failed to update user");
+  }
+
+  return data;
+}
+
+// PATCH — atualização parcial
+export async function patchUser(apiUrl, id, fields) {
+  if (fields.age !== undefined) {
+    fields.age = Number(fields.age);
+  }
+
+  const response = await fetch(`${apiUrl}?id=${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(fields),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Failed to patch user");
+  }
+
+  return data;
 }

@@ -22,7 +22,7 @@ export async function renderUsers(apiUrl) {
 
   users.forEach((user) => {
     const card = document.createElement("div");
-    card.classList.add(`card`);
+    card.classList.add(`user-card`);
     card.id = user.id;
 
     card.innerHTML = `
